@@ -8,7 +8,7 @@ import strategypattern.vehicle.SportsVehicle;
 
 public class StrategyPatternMain {
 
-    static void main() {
+    public static void main(String[] args) {
 
         NormalVehicle normalVehicle = new NormalVehicle(new NormalSpeedStrategy());
         normalVehicle.drive();
