@@ -7,6 +7,7 @@ A repository for learning and implementing different design patterns in Java. Ea
 - [How to Run the Code](#how-to-run-the-code)
 - [Strategy Pattern](#strategy-pattern)
 - [State Pattern](#state-pattern)
+- [Observer Pattern](#observer-pattern)
 
 ---
 
@@ -49,3 +50,17 @@ Use the State pattern when an object's behavior changes based on its internal st
 ### Our Example
 
 Demonstrates the State pattern using a gumball vending machine. A `State` interface defines state-specific behaviors (`insertQuarter()`, `ejectQuarter()`, `turnCrank()`, `dispense()`, `refill()`), which are implemented by concrete state classes (`NoQuarterState`, `HasQuarterState`, `SoldState`, `SoldOutState`, `WinningState`). The `GumballMachineV2` context class holds a reference to the current state and delegates all actions to it. As actions occur, states transition the machine to other states, eliminating complex conditionals and making it easy to add new states.
+
+---
+
+## Observer Pattern
+
+Use the Observer pattern when you need to notify multiple objects about state changes in another object, creating a one-to-many dependency. It's a good fit when you want objects to stay synchronized without tight coupling — the subject (observable) maintains a list of observers and notifies them automatically when its state changes. This pattern supports both push (subject sends data) and pull (observers request data) models.
+
+### Our Example: Weather-O-Rama (Push Model)
+
+Demonstrates the push model where the subject sends all relevant data to observers. A `WeatherObserver` interface defines `update(temperature, humidity, pressure)` method. The `WeatherData` subject pushes weather measurements to all registered observers (`CurrentConditionsDisplay`, `StatisticsDisplay`, `ForecastDisplay`, `HeatIndexDisplay`). Each observer receives the data as parameters and processes it according to its specific display logic.
+
+### Our Example: Weather-O-Rama (Pull Model)
+
+Demonstrates the pull model where observers retrieve only the data they need. A `WeatherObserver` interface defines `update()` method with no parameters. The `WeatherData` subject notifies observers of changes, and observers pull specific data using getter methods (`getTemperature()`, `getHumidity()`, `getPressure()`). This approach gives observers more control and reduces unnecessary data transfer when observers need only specific measurements.
