@@ -8,6 +8,7 @@ A repository for learning and implementing different design patterns in Java. Ea
 - [Strategy Pattern](#strategy-pattern)
 - [State Pattern](#state-pattern)
 - [Observer Pattern](#observer-pattern)
+- [Factory Pattern](#factory-pattern)
 
 ---
 
@@ -64,3 +65,17 @@ Demonstrates the push model where the subject sends all relevant data to observe
 ### Our Example: Weather-O-Rama (Pull Model)
 
 Demonstrates the pull model where observers retrieve only the data they need. A `WeatherObserver` interface defines `update()` method with no parameters. The `WeatherData` subject notifies observers of changes, and observers pull specific data using getter methods (`getTemperature()`, `getHumidity()`, `getPressure()`). This approach gives observers more control and reduces unnecessary data transfer when observers need only specific measurements.
+
+---
+
+## Factory Pattern
+
+Use the Factory pattern when you want to delegate the responsibility of object creation to a separate component, rather than instantiating objects directly with `new`. It's a good fit when the exact type of object to create isn't known until runtime, or when you want to centralize and encapsulate creation logic so that client code depends only on abstractions, not concrete classes.
+
+### Our Example: Simple Factory
+
+Demonstrates the Simple Factory using a pizza ordering example. A `SimplePizzaFactory` centralizes the creation of `Pizza` objects (`CheezePizza`, `PepperoniPizza`, `VeggiePizza`) using a `HashMap` of class-to-supplier mappings. The `PizzaStore` delegates all instantiation to the factory, keeping ordering logic decoupled from concrete pizza types.
+
+### Our Example: Abstract Factory
+
+Demonstrates the Abstract Factory pattern using a pizza store franchise example. An abstract `PizzaStore` defines the `orderPizza()` workflow and declares an abstract `createPizza()` factory method. Concrete subclasses (`NYPizzaStore`, `ChicagoPizzaStore`) override `createPizza()` to produce their own regional pizza variants (`NYStyleCheesePizza`, `NYStyleClamPizza`, `ChicagoStyleCheesePizza`, `ChicagoStyleClamPizza`). This lets each store control which pizzas it creates while sharing the same ordering process.
